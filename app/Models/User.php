@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the instructors for the user.
+     */
+    public function instructors()
+    {
+        return $this->hasMany(Instructor::class);
+    }
 }
