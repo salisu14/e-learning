@@ -1,2 +1,1 @@
-# e-learning
-Automated E-Learning System
+# E-Learning Platform
