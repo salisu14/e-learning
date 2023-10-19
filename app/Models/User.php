@@ -43,6 +43,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
     /**
      * Get the instructors for the user.
      */
