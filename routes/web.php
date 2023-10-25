@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstructorController;
 
@@ -31,7 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('instructors', InstructorController::class);
+Route::resource('instructors', InstructorController::class)->except('show');
 Route::resource('courses', CourseController::class);
+Route::resource('enrollments', EnrollmentController::class)->except('show');
 
 require __DIR__.'/auth.php';
