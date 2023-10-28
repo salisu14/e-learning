@@ -3,11 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AllocationController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\SessionController;
 
 
 /*
@@ -42,7 +44,11 @@ Route::resource('courses', CourseController::class);
 Route::resource('enrollments', EnrollmentController::class)->except('show');
 
 Route::resource('lessons', LessonController::class);
+
 Route::resource('module', ModuleController::class);
 
+Route::resource('sessions', SessionController::class);
+
+Route::resource('allocations', AllocationController::class);
 
 require __DIR__.'/auth.php';
