@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
+    public function modules()
+    {
+        return $this->hasMany(Module::class);
+    }
+
     /**
      * Get the instructors for the user.
      */

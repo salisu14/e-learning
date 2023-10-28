@@ -29,25 +29,26 @@
 
                             <!-- Course -->
                             <div class="mt-3">
-                                <x-label for="modules" :value="__('Choose Module')"/>
+                                <x-label for="course" :value="__('Choose Course')"/>
                                 <select name="course_id" id="course" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
-                                @foreach($modules as $module)
-                                    <option value="{{ $module->id }}">{{ $module->name  }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                            <!-- Instructor -->
-                            <div class="mt-3">
-                                <x-label for="instructor" :value="__('Choose Instructor')"/>
-                                <select name="instructor_id" id="instructor" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
                                 @foreach($courses as $course)
-                                    <option value="{{ $module->id }}">{{ $module->name  }}</option>
+                                    <option value="{{ $course->id }}">{{ $course->title  }}</option>
                                 @endforeach
                                 </select>
                             </div>
 
-                            <div class="flex items-center justify-end mt-4">
-                            <x-primary-button class="ml-4">
+                            <!-- Instructor -->
+                            <div class="mt-3">
+                                <x-label for="instructor" :value="__('Choose Instructor')"/>
+                                <select name="instructor_id" id="instructor" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                @foreach($instructors as $instructor)
+                                    <option value="{{ $instructor->id }}">{{ $instructor->name  }}</option>
+                                @endforeach
+                                </select>
+                             </div>
+
+                             <div class="flex items-center justify-end mt-4">
+                             <x-primary-button class="ml-4">
                                     {{ __('Submit') }}
                                 </x-primary-button>
                             </div>

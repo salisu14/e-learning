@@ -36,6 +36,10 @@
                         {{ __('Allocations') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('modules.index')" :active="request()->routeIs('modules.index')">
+                        {{ __('Modules') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('lessons.index')" :active="request()->routeIs('lessons.index')">
                         {{ __('Lessons') }}
                     </x-nav-link>

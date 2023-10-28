@@ -28,6 +28,7 @@ class Course extends Model
         return $this->belongsTo(Instructor::class);
     }
 
+
     /**
      * Get the user for the course.
      */
