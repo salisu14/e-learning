@@ -24,9 +24,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::latest()->get();
+        $courses = course::latest()->get();
 
-        return view('courses.create', \compact('instructors'));
+        return view('courses.create', \compact('courses'));
     }
 
     /**

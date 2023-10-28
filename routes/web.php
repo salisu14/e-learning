@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\LessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('instructors', InstructorController::class)->except('show');
+
 Route::resource('courses', CourseController::class);
+
 Route::resource('enrollments', EnrollmentController::class)->except('show');
+
+Route::resource('lessons', LessonController::class);
+
 
 require __DIR__.'/auth.php';
