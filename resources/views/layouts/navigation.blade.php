@@ -32,6 +32,10 @@
                         {{ __('Enrollments') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('allocations.index')" :active="request()->routeIs('allocations.index')">
+                        {{ __('Allocations') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('lessons.index')" :active="request()->routeIs('lessons.index')">
                         {{ __('Lessons') }}
                     </x-nav-link>
