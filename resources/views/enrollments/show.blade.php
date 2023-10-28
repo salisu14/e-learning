@@ -11,26 +11,11 @@
                 <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
                     <div class="block overflow-x-auto sm:rounded-lg">
                         <h2 class="m-2 text-xl text-center font-extrabold dark:text-white">{{ $course->title }}</h2>
-                        <div class="divide-y-2 px-3">
+                        <div class="divide-y-2 px-3 py-5">
                             <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Instructor: {{ $course->instructor->name }}
                             <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Description: {{ $course->description }}
                             <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date created: {{ $course->created_at }}
                             <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date updated: {{ $course->updated_at }}
-                        </div>
-                        <div>
-                            <h2 class="text-2xl text-blue-700 text-left mb-2">Enrollments</h2>
-                            @if($course->enrollments->count() > 0)
-                            <ul>
-                                <h3 class="text-xl text-green-700 text-left mb-2">Students</h3>
-                                @foreach($course->enrollments as $enrollment)
-                                    <li>Student {{ $loop->iteration }}: {{ $enrollment->user->name ?? '' }}</li>
-                                    <li>Enrollment Date: {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $enrollment->enrollment_date)->toRfc7231String()  }}</li>
-                                    <div class="py-2"></div>
-                                @endforeach
-                            </ul>
-                            @else
-                            <p class="mb-3 mt-3 text-xl font-semibold text-red-500 dark:text-red-400">No enrollment(s) for this course</p>
-                            @endif
                         </div>
                     </div>
 

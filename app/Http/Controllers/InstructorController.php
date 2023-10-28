@@ -39,14 +39,6 @@ class InstructorController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Instructor $instructor)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Instructor $instructor)
