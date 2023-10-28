@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create Course') }}
+            {{ __('Create Module') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
-                        <form method="POST" action="{{ route('courses.store') }}">
+                        <form method="POST" action="{{ route('modules.store') }}">
                             @csrf
 
                             <!-- Title -->
@@ -27,12 +27,21 @@
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
                             </div>
 
+                            <!-- Course -->
+                            <div class="mt-3">
+                                <x-label for="modules" :value="__('Choose Module')"/>
+                                <select name="course_id" id="course" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                @foreach($modules as $module)
+                                    <option value="{{ $module->id }}">{{ $module->name  }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                             <!-- Instructor -->
                             <div class="mt-3">
                                 <x-label for="instructor" :value="__('Choose Instructor')"/>
                                 <select name="instructor_id" id="instructor" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
                                 @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name  }}</option>
+                                    <option value="{{ $module->id }}">{{ $module->name  }}</option>
                                 @endforeach
                                 </select>
                             </div>

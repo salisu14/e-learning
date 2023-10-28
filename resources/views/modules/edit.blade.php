@@ -27,15 +27,25 @@
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
                             </div>
 
+                            <!-- Course -->
+                            <div class="mt-3">
+                                <x-label for="modules" :value="__('Choose Module')"/>
+                                <select name="course_id" id="course" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                @foreach($modules as $module)
+                                    <option value="{{ $module->id }}">{{ $module->name  }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                             <!-- Instructor -->
                             <div class="mt-3">
                                 <x-label for="instructor" :value="__('Choose Instructor')"/>
                                 <select name="instructor_id" id="instructor" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
                                 @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name  }}</option>
+                                    <option value="{{ $module->id }}">{{ $module->name  }}</option>
                                 @endforeach
                                 </select>
                             </div>
+
 
                             <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">
