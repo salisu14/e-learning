@@ -45,11 +45,9 @@ Route::resource('enrollments', EnrollmentController::class)->except('show');
 
 Route::resource('lessons', LessonController::class);
 
-<<<<<<< HEAD
 Route::resource('module', ModuleController::class);
-=======
+
 Route::resource('modules', ModuleController::class);
->>>>>>> 8846b52 (Add Module CRUD operations)
 
 Route::resource('sessions', SessionController::class);
 
