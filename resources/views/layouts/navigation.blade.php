@@ -16,6 +16,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('sessions.index')" :active="request()->routeIs('sessions.index')">
+                        {{ __('Sessions') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
                         {{ __('Instructors') }}
                     </x-nav-link>
@@ -29,7 +33,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('lessons.index')" :active="request()->routeIs('lessons.index')">
-                        {{ __('lessons') }}
+                        {{ __('Lessons') }}
                     </x-nav-link>
                 </div>
             </div>

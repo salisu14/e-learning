@@ -8,6 +8,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\SessionController;
 
 
 /*
@@ -44,5 +45,6 @@ Route::resource('enrollments', EnrollmentController::class)->except('show');
 Route::resource('lessons', LessonController::class);
 Route::resource('module', ModuleController::class);
 
+Route::resource('sessions', SessionController::class);
 
 require __DIR__.'/auth.php';
