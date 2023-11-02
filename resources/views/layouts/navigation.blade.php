@@ -20,6 +20,10 @@
                         {{ __('Sessions') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.index')">
+                        {{ __('Departments') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
                         {{ __('Instructors') }}
                     </x-nav-link>
@@ -34,10 +38,6 @@
 
                     <x-nav-link :href="route('allocations.index')" :active="request()->routeIs('allocations.index')">
                         {{ __('Allocations') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('modules.index')" :active="request()->routeIs('modules.index')">
-                        {{ __('Modules') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('lessons.index')" :active="request()->routeIs('lessons.index')">

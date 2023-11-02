@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
-use App\Models\Instructor;
+use App\Models\Department;
+
+use App\Enums\SemesterEnum;
 
 class CourseController extends Controller
 {
@@ -15,6 +17,8 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->paginate(10);
+        
+        // $semesters = SemesterEnum::cases();
 
         return view('courses.index', \compact('courses'));
     }
@@ -24,9 +28,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $courses = course::latest()->get();
+        $semesters = SemesterEnum::cases();
 
-        return view('courses.create', \compact('courses'));
+        return view('courses.create', \compact('semesters'));
     }
 
     /**
@@ -35,6 +39,10 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
         $validated = $request->validated();
+
+        $dept_id = Department::first()->id;
+
+        $validated['department_id'] = $dept_id;   
 
         auth()->user()->courses()->create($validated);
 
@@ -56,9 +64,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $instructors = Instructor::latest()->get();
+        $semesters = SemesterEnum::cases();
 
-        return view('courses.edit', \compact('course', 'instructors'));
+        return view('courses.edit', \compact('course', 'semesters'));
     }
 
     /**

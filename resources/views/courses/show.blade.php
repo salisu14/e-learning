@@ -12,8 +12,10 @@
                     <div class="block overflow-x-auto sm:rounded-lg">
                         <h2 class="m-2 text-xl text-center font-extrabold dark:text-white">{{ $course->title }}</h2>
                         <div class="divide-y-2 px-3">
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Instructor: {{ $course->instructor->name }}
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Description: {{ $course->description }}
+                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Code: {{ $course->code }}
+                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Title: {{ $course->title }}
+                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Semester: {{ Str::ucfirst($course->semester) }} Semester
+                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Department: {{ Str::ucfirst($course->department->name) }}
                             <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date created: {{ $course->created_at }}
                             <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date updated: {{ $course->updated_at }}
                         </div>

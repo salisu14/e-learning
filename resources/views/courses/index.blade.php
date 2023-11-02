@@ -8,7 +8,8 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
+               <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
+                            
                     <div class="block overflow-x-auto sm:rounded-lg">
 
                         <x-flash />
@@ -20,11 +21,15 @@
                                         S/N
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Course code
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
                                         Course title
                                     </th>
                         
                                     <th scope="col" class="px-6 py-3">
-                                        Instructor
+                                        Semester
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
@@ -42,17 +47,23 @@
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ ($courses->currentPage() - 1) * $courses->perPage() + $loop->iteration }}.
                                     </td>
+
+                                    <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a class="hover:underline" href="{{ route('courses.show', $course) }}">{{ $course->code }}</a>
+                                    </td>
+
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         <a class="hover:underline" href="{{ route('courses.show', $course) }}">{{ $course->title }}</a>
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $course->instructor->name }}
+                                       {{ Str::ucfirst($course->semester) }}
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $course->created_at->toFormattedDateString() }}
                                     </td>
+                                    
                                     <td class="px-6 py-4">
                                         <a class="inline" href="{{ route('courses.show', $course) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
@@ -84,7 +95,6 @@
                         <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
                             {{ $courses->links() }}
                         </div>
-
 
                     </div>
 

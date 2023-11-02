@@ -10,7 +10,7 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'instructor_id'];
+    protected $fillable = ['title', 'code', 'semester', 'department_id', 'status', 'type', 'level', 'unit'];
 
     /**
      * Get the instructor for the course.
@@ -23,9 +23,9 @@ class Course extends Model
     /**
      * Get the instructor for the course.
      */
-    public function instructor()
+    public function department()
     {
-        return $this->belongsTo(Instructor::class);
+        return $this->belongsTo(Department::class);
     }
 
 

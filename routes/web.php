@@ -10,6 +10,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\DepartmentController;
 
 
 /*
@@ -53,4 +54,7 @@ Route::resource('sessions', SessionController::class);
 
 Route::resource('allocations', AllocationController::class);
 
+Route::resource('departments', DepartmentController::class);
+
 require __DIR__.'/auth.php';
+        

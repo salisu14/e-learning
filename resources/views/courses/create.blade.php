@@ -13,32 +13,32 @@
                         <form method="POST" action="{{ route('courses.store') }}">
                             @csrf
 
+                             <!-- Code -->
+                             <div>
+                                <x-input-label for="code" :value="__('Code')" />
+                                <x-text-input id="code" class="block mt-1 w-full" type="text" name="code" :value="old('code')" required autofocus autocomplete="code" />
+                                <x-input-error :messages="$errors->get('code')" class="mt-2" />
+                            </div>
+                            
                             <!-- Title -->
-                            <div>
+                            <div class="mt-3">
                                 <x-input-label for="title" :value="__('Title')" />
                                 <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
                             </div>
 
-                            <!-- Description -->
-                            <div class="mt-4">
-                                <x-input-label for="description" :value="__('Description')" />
-                                <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="description" type="text" name="description" :value="old('descrption')"></textarea>
-                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                            </div>
-
-                            <!-- Instructor -->
+                            <!-- Semester -->
                             <div class="mt-3">
-                                <x-label for="instructor" :value="__('Choose Instructor')"/>
-                                <select name="instructor_id" id="instructor" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
-                                @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name  }}</option>
-                                @endforeach
+                                <x-label for="semester" :value="__('Choose Semester')"/>
+                                <select name="semester" id="semester" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                    @foreach($semesters as $semester)
+                                        <option value="{{ $semester->value }}">{{ $semester->label()  }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
-                            <x-primary-button class="ml-4">
+                                <x-primary-button class="mt-3 ml-4">
                                     {{ __('Submit') }}
                                 </x-primary-button>
                             </div>
