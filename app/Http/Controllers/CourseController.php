@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Department;
 
+use App\Enums\CourseStatusEnum;
+use App\Enums\CourseTypeEnum;
+use App\Enums\LevelEnum;
 use App\Enums\SemesterEnum;
 
 class CourseController extends Controller
@@ -16,7 +19,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest()->paginate(10);
+        $courses = Course::where('status', 'active')->latest()->paginate(10);
         
         // $semesters = SemesterEnum::cases();
 
@@ -28,9 +31,17 @@ class CourseController extends Controller
      */
     public function create()
     {
+        $statuses = CourseStatusEnum::cases();
+        $types = CourseTypeEnum::cases();
+        $levels = LevelEnum::cases();
         $semesters = SemesterEnum::cases();
 
-        return view('courses.create', \compact('semesters'));
+        return view('courses.create', \compact([
+            'semesters',
+            'types',
+            'levels',
+            'statuses',
+        ]));
     }
 
     /**
@@ -64,9 +75,18 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        $statuses = CourseStatusEnum::cases();
+        $types = CourseTypeEnum::cases();
+        $levels = LevelEnum::cases();
         $semesters = SemesterEnum::cases();
 
-        return view('courses.edit', \compact('course', 'semesters'));
+        return view('courses.edit', \compact([
+            'course',
+            'semesters',
+            'types',
+            'levels',
+            'statuses',
+        ]));
     }
 
     /**
@@ -77,6 +97,8 @@ class CourseController extends Controller
         $validated = $request->validated();
 
         $course->update($validated);
+
+        // dd($validated, $course);
 
         return redirect()->route('courses.index')->withSuccess('Course updated successfully.');
     }

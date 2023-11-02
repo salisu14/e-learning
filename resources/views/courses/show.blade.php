@@ -11,13 +11,21 @@
                 <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
                     <div class="block overflow-x-auto sm:rounded-lg">
                         <h2 class="m-2 text-xl text-center font-extrabold dark:text-white">{{ $course->title }}</h2>
-                        <div class="divide-y-2 px-3">
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Code: {{ $course->code }}
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Title: {{ $course->title }}
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Semester: {{ Str::ucfirst($course->semester) }} Semester
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Department: {{ Str::ucfirst($course->department->name) }}
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date created: {{ $course->created_at }}
-                            <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date updated: {{ $course->updated_at }}
+                        <div class="flex justify-center items-center">
+                            <div class="divide-y-2 px-3">
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Code: {{ $course->code }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Title: {{ $course->title }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Course Type: {{ $course->type }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Credit Unit: {{ $course->unit }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Level: {{ Str::ucfirst($course->level) }} Hundred</p>
+                            </div>
+                            <div class="divide-y-2 px-3">
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Semester: {{ Str::ucfirst($course->semester) }} Semester</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Status: {{ Str::ucfirst($course->status) }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Department: {{ Str::ucfirst($course->department->name) }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date created: {{ $course->created_at }}</p>
+                                <p class="mb-3 text-lg font-normal text-gray-500 dark:text-gray-400">Date updated: {{ $course->updated_at }}</p>
+                            </div>
                         </div>
                         <div>
                             <h2 class="text-2xl text-blue-700 text-left mb-2">Enrollments</h2>

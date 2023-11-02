@@ -27,12 +27,49 @@
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
                             </div>
 
+                            <!-- Credit Unit -->
+                            <div class="mt-3">
+                                <x-input-label for="unit" :value="__('Credit Unit')" />
+                                <x-text-input id="unit" class="block mt-1 w-full" type="text" name="unit" :value="old('unit')" required autofocus autocomplete="title" />
+                                <x-input-error :messages="$errors->get('unit')" class="mt-2" />
+                            </div>
+
                             <!-- Semester -->
                             <div class="mt-3">
                                 <x-label for="semester" :value="__('Choose Semester')"/>
                                 <select name="semester" id="semester" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
                                     @foreach($semesters as $semester)
                                         <option value="{{ $semester->value }}">{{ $semester->label()  }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Level -->
+                            <div class="mt-3">
+                                <x-label for="level" :value="__('Choose Level')"/>
+                                <select name="level" id="level" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                    @foreach($levels as $level)
+                                        <option value="{{ $level->value }}">{{ $level->label()  }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Type -->
+                            <div class="mt-3">
+                                <x-label for="type" :value="__('Course Type')"/>
+                                <select name="type" id="type" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                    @foreach($types as $type)
+                                        <option value="{{ $type->value }}">{{ $type->label()  }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="mt-3">
+                                <x-label for="status" :value="__('Course Status')"/>
+                                <select name="status" id="status" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+                                    @foreach($statuses as $status)
+                                        <option value="{{ $status->value }}">{{ $status->label()  }}</option>
                                     @endforeach
                                 </select>
                             </div>

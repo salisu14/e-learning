@@ -29,11 +29,15 @@
                                     </th>
                         
                                     <th scope="col" class="px-6 py-3">
+                                        Credit Unit
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
                                         Semester
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
-                                        Date created
+                                        Status
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
@@ -57,11 +61,15 @@
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                       {{ $course->unit }}
+                                    </td>
+
+                                    <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                        {{ Str::ucfirst($course->semester) }}
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $course->created_at->toFormattedDateString() }}
+                                        {{  Str::ucfirst($course->type) }}
                                     </td>
                                     
                                     <td class="px-6 py-4">
