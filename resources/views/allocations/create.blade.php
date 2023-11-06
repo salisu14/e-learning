@@ -15,7 +15,7 @@
 
                             <!-- Instructor -->
                             <div class="mt-3">
-                                <x-label for="instructor" :value="__('Choose Course')"/>
+                                <x-label for="instructor" :value="__('Choose Instructor')"/>
                                 <select name="instructor_id" id="instructor" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
                                 @foreach($instructors as $instructor)
                                     <option value="{{ $instructor->id }}">{{ $instructor->name  }}</option>

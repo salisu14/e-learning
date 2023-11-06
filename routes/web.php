@@ -11,6 +11,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SetCurrentSessionController;
 
 
 /*
@@ -38,23 +39,29 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('instructors', InstructorController::class)->except('show');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::resource('courses', CourseController::class);
+    Route::resource('instructors', InstructorController::class)->except('show');
 
-Route::resource('enrollments', EnrollmentController::class)->except('show');
+    Route::resource('courses', CourseController::class);
 
-Route::resource('lessons', LessonController::class);
+    Route::resource('enrollments', EnrollmentController::class)->except('show');
 
-Route::resource('module', ModuleController::class);
+    Route::resource('lessons', LessonController::class);
 
-Route::resource('modules', ModuleController::class);
+    Route::resource('module', ModuleController::class);
 
-Route::resource('sessions', SessionController::class);
+    Route::resource('modules', ModuleController::class);
 
-Route::resource('allocations', AllocationController::class);
+    Route::resource('sessions', SessionController::class);
 
-Route::resource('departments', DepartmentController::class);
+    Route::resource('allocations', AllocationController::class);
+
+    Route::resource('departments', DepartmentController::class);
+
+    Route::get('sessions/{session}/current', SetCurrentSessionController::class)->name('sessions.current');
+
+});
 
 require __DIR__.'/auth.php';
         

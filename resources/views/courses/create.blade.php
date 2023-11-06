@@ -12,7 +12,7 @@
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
                         <form method="POST" action="{{ route('courses.store') }}">
                             @csrf
-
+                                                                           
                              <!-- Code -->
                              <div>
                                 <x-input-label for="code" :value="__('Code')" />
@@ -20,7 +20,7 @@
                                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
                             </div>
                             
-                            <!-- Title -->
+                          <!-- Title -->
                             <div class="mt-3">
                                 <x-input-label for="title" :value="__('Title')" />
                                 <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />

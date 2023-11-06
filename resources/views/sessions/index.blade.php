@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Instructors') }}
+            {{ __('Sessions') }}
         </h2>
     </x-slot>
 
@@ -42,7 +42,13 @@
                                         {{ $session->created_at->toDayDateTimeString() }}
                                     </td>
                                     <td class="px-6 py-4">
+
+                                        <div class="inline">
+                                            <input type="radio" name="layout" value="2col-img-sidebar" {{ $sessions ? "checked" : "" }}>
+                                        </div>
+                                        
                                         <a href="{{ route('sessions.edit', $session) }}" class="px-4 py-2 bg-green-600 text-white rounded-lg dark:text-white hover:bg-green-900">Edit</a>
+                                        
                                         <form class="ml-2 inline" method="POST" action="{{ route('sessions.destroy', $session) }}">
                                             @csrf
                                             @method('DELETE')
@@ -58,7 +64,6 @@
                         <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
                             {{ $sessions->links() }}
                         </div>
-
 
                     </div>
 

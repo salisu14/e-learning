@@ -13,8 +13,16 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $instructors = Instructor::latest()->paginate(10);
+        $id = auth()->id();
 
+        $instructors = '';
+
+        if($id === 1) {
+            $instructors = Instructor::latest()->paginate(10);
+        } else {
+            $instructors = auth()->user()->instructors()->latest()->paginate(10);
+        }
+        
         return view('instructors.index', compact('instructors'));
     }
 

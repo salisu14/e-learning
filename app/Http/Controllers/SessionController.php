@@ -15,7 +15,7 @@ class SessionController extends Controller
     {
         $sessions = Session::latest()->paginate(10);
 
-        return view('sessions.index', compact('sessions'));
+        return view('sessions.index', compact('sessions', 'sessions'));
     }
 
     /**
