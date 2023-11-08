@@ -20,6 +20,10 @@
                                     <th scope="col" class="px-6 py-3">
                                         Session
                                     </th>
+
+                                    <th scope="col" class="px-6 py-3">
+                                        Status
+                                    </th>
                                     <th scope="col" class="px-6 py-3">
                                         Created On
                                     </th>
@@ -38,15 +42,19 @@
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $session->name }}
                                     </td>
+
+                                    <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                       @if($session->is_active)
+                                            Active
+                                       @else
+                                            Inactive
+                                       @endif
+                                    </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $session->created_at->toDayDateTimeString() }}
                                     </td>
                                     <td class="px-6 py-4">
 
-                                        <div class="inline">
-                                            <input type="radio" name="layout" value="2col-img-sidebar" {{ $sessions ? "checked" : "" }}>
-                                        </div>
-                                        
                                         <a href="{{ route('sessions.edit', $session) }}" class="px-4 py-2 bg-green-600 text-white rounded-lg dark:text-white hover:bg-green-900">Edit</a>
                                         
                                         <form class="ml-2 inline" method="POST" action="{{ route('sessions.destroy', $session) }}">
