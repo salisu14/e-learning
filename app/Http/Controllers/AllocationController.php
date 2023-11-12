@@ -30,9 +30,13 @@ class AllocationController extends Controller
 
         $instructors = Instructor::latest()->get();
         
-        $sessions = Session::latest()->get();
+        $session = Session::where('is_active', true)->first();
 
-        return view('allocations.create', compact('courses', 'instructors', 'sessions'));
+        if (!$session) {
+            $session =  Session::latest()->first();
+        }
+
+        return view('allocations.create', compact('courses', 'instructors', 'session'));
     }
 
     /**

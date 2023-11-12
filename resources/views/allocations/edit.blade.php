@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Edit Allocation') }}
+            {{ __('Edit Allocation') }} for {{ $session->name }}
         </h2>
     </x-slot>
 
@@ -34,15 +34,6 @@
                                 </select>
                             </div>
 
-                            <!-- Session -->
-                            <div class="mt-3">
-                                <x-label for="session" :value="__('Choose Session')"/>
-                                <select name="session_id" id="session" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
-                                @foreach($sessions as $session)
-                                    <option value="{{ $session->id }}" {{ $session->id === $allocation->session_id ? 'selected' : ''}}>{{ $session->name  }}</option>
-                                @endforeach
-                                </select>
-                            </div>
 
                             <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">

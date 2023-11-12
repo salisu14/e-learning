@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create Allocation') }}
+            {{ __('Create Allocation') }} for {{ $session->name }}
         </h2>
     </x-slot>
 
@@ -12,6 +12,8 @@
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
                         <form method="POST" action="{{ route('allocations.store') }}">
                             @csrf
+
+                            <input type="hidden" name="session_id" value="{{ $session->id }}" />
 
                             <!-- Instructor -->
                             <div class="mt-3">
@@ -32,17 +34,6 @@
                                 @endforeach
                                 </select>
                             </div>
-
-                            <!-- Session -->
-                            <div class="mt-3">
-                                <x-label for="session" :value="__('Choose Session')"/>
-                                <select name="session_id" id="session" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
-                                @foreach($sessions as $session)
-                                    <option value="{{ $session->id }}">{{ $session->name  }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                            
 
                             <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">

@@ -33,7 +33,14 @@ class SessionController extends Controller
     {
         $validated = $request->validated();
 
-        Session::create($validated);
+        // Set the current session to inactive
+        $session = Session::where('is_active', true)->update(['is_active' => false]);
+
+        $activeSession = Session::create($validated);
+
+        $activeSession->is_active = true;
+
+        $activeSession->save();
 
         return redirect()->route('sessions.index')->withSuccess('Session created successfully.');
     }
