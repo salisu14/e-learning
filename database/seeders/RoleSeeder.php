@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Role;
+
 class RoleSeeder extends Seeder
 {
     /**
@@ -29,7 +31,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'id'    => 3,
-                'name' => 'Student',
+                'name'  => 'Student',
                 'guard_name' => 'web',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -37,6 +39,5 @@ class RoleSeeder extends Seeder
         ];
 
         Role::insert($roles);
-
     }
 }

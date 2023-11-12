@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInstructorRequest;
 use App\Http\Requests\UpdateInstructorRequest;
+use App\Models\Department;
 use App\Models\Instructor;
+use App\Models\User;
 
 class InstructorController extends Controller
 {
@@ -13,16 +15,8 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $id = auth()->id();
+        $instructors = Instructor::latest()->paginate(10);
 
-        $instructors = '';
-
-        if($id === 1) {
-            $instructors = Instructor::latest()->paginate(10);
-        } else {
-            $instructors = auth()->user()->instructors()->latest()->paginate(10);
-        }
-        
         return view('instructors.index', compact('instructors'));
     }
 
@@ -31,7 +25,13 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        return view('instructors.create');
+        $departments = Department::latest()->get();
+
+        $instructor = User::find(2);
+
+        // dd($departments, $instructor);
+
+        return view('instructors.create', compact('departments', 'instructor'));
     }
 
     /**

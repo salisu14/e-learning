@@ -4,14 +4,16 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AllocationController;
-use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SetCurrentSessionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -49,8 +51,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('lessons', LessonController::class);
 
-    Route::resource('module', ModuleController::class);
-
     Route::resource('modules', ModuleController::class);
 
     Route::resource('sessions', SessionController::class);
@@ -60,6 +60,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('departments', DepartmentController::class);
 
     Route::get('sessions/{session}/current', SetCurrentSessionController::class)->name('sessions.current');
+
+    Route::resource('roles', RoleController::class);
+
+    Route::resource('users', UserController::class);
 
 });
 

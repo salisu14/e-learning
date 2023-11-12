@@ -6,6 +6,9 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
+use App\Models\Permission;
+use App\Models\Role;
+
 
 class AdminUserSeeder extends Seeder
 {
@@ -16,7 +19,7 @@ class AdminUserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'Administrator',
-            'email' => 'superadmin@elearning.com',
+            'email' => 'salsafh@gmail.com',
             'password' => bcrypt('password'),
             'email_verified_at' => now(),
         ]);

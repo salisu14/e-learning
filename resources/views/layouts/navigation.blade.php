@@ -16,6 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    @if(\Auth::user()->hasRole('Administrator'))
                     <x-nav-link :href="route('sessions.index')" :active="request()->routeIs('sessions.index')">
                         {{ __('Sessions') }}
                     </x-nav-link>
@@ -43,6 +44,18 @@
                     <x-nav-link :href="route('lessons.index')" :active="request()->routeIs('lessons.index')">
                         {{ __('Lessons') }}
                     </x-nav-link>
+                    @endif
+
+                    @if(!\Auth::user()->hasRole('Administrator'))
+                    <x-nav-link href="#">
+                        {{ __('My Courses') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="#">
+                        {{ __('My Students') }}
+                    </x-nav-link>
+                    @endif
+
                 </div>
             </div>
 
@@ -65,6 +78,12 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+
+                        @if (\Auth::user()->hasRole('Administrator'))
+                        <x-dropdown-link :href="route('users.index')">
+                            {{ __('Manage Users') }}
+                        </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

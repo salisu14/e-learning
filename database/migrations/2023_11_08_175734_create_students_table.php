@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('instructors', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('specialization')->nullable();
-            $table->string('qualification')->nullable();
-            $table->string('rank')->nullable();
-            $table->string('staff_number')->nullable();
+            $table->string('student_number')->nullable();
+            $table->string('user_address')->nullable();
+            $table->string('user_city')->nullable();
+            $table->string('user_state')->nullable();
             $table->string('gender')->nullable();
             $table->date('birth_date')->nullable();
             $table->foreignId('department_id')->constrained();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('instructors');
+        Schema::dropIfExists('user_profiles');
     }
 };
