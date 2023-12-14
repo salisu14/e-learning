@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Instructors') }}
+            {{ __('Students') }}
         </h2>
     </x-slot>
 
@@ -18,7 +18,7 @@
                                         S/N
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Instructor name
+                                        Student name
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Phone Number
@@ -26,47 +26,41 @@
                                     <th scope="col" class="px-6 py-3">
                                         Created On
                                     </th>
-
-                                    <th scope="col" class="px-6 py-3">
-                                        Action
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($instructors as $instructor)
+                                @foreach($students as $student)
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $instructor->id }}.
+                                    {{ $student->id }}.
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        <a href="{{ route('instructors.show', $instructor->id) }}">{{ $instructor->name }}</a>
+                                        {{ $student->name }}
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $instructor->phone_number }}
+                                        {{ $student->phone_number }}
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $instructor->created_at->toDayDateTimeString() }}
+                                        {{ $student->created_at->toDayDateTimeString() }}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <a href="{{ route('instructors.edit', $instructor) }}" class="px-4 py-2 bg-green-600 text-white rounded-lg dark:text-white hover:bg-green-900">Edit</a>
-                                        <form class="ml-2 inline" method="POST" action="{{ route('instructors.destroy', $instructor) }}">
+                                    <!-- <td class="px-6 py-4">
+                                        <a href="#" class="px-4 py-2 bg-green-600 text-white rounded-lg dark:text-white hover:bg-green-900">Edit</a>
+                                        <form class="ml-2 inline" method="POST" action="#">
                                             @csrf
                                             @method('DELETE')
                 
                                             <button  class="px-4 py-2 bg-red-600 text-white rounded-lg dark:text-white hover:bg-red-900" type="submit">Delete</button>
                                         </form>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 @endforeach
-                            </tbody>
+                            </tbody>update
                         </table>
 
-                       
+                        <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
+                            {{ $students->links() }}
+                        </div>
 
-                    </div>
-
-                    <div class="flex justify-right items-center mt-6">
-                        <a href="{{ route('users.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Instructor</a>
                     </div>
                 </div>
             </div>

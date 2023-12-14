@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('learning_materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('allocation_id')->constrained('allocated_courses');
+            $table->text('description')->nullable();
+            $table->string('file_path');
+            $table->enum('type', ['video', 'file']);
+            $table->foreignId('lesson_id')->constrained('lessons');
+            $table->foreignId('instructor_id')->constrained();
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists('learning_materials');
     }
 };

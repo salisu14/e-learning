@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lessons', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->foreignId('allocation_id')->constrained('allocated_courses');
-            $table->timestamps();
+        Schema::table('enrollments', function (Blueprint $table) {
+            // $table->foreignId('session_id')->constrained();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lessons');
+        Schema::table('enrollments', function (Blueprint $table) {
+            // $table->dropColumns('session_id');
+        });
     }
 };

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\User;
+use App\Policies\LearningMaterial;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        LearningMaterial::class => LearningMaterialPolicy::class,
     ];
 
     /**
@@ -23,7 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         // Implicitly grant "Super Admin" role for all permissions
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('Administrator') ? true : null;
+            return $user->hasRole('administrator') ? true : null;
+        });
+
+        Gate::define('access-admin-area', function (User $user) {
+            return $user->hasRole('administrator');
         });
     }
 }

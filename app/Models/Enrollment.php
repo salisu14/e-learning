@@ -9,9 +9,7 @@ class Enrollment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['enrollment_date','course_id', 'user_id'];
-
-    // protected $guarded= [];
+    protected $fillable = ['enrollment_date','course_id', 'session_id', 'user_id'];
 
     /**
      * Get the course for the enrollment.
@@ -26,6 +24,6 @@ class Enrollment extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

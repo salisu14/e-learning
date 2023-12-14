@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Department;
 use App\Models\Student;
+use App\Models\User;
 
 class StudentController extends Controller
 {
@@ -13,31 +15,21 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $students = User::role('student')->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreStudentRequest $request)
-    {
-        //
+        return view('students.index', compact('students'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show($user_id)
     {
-        //
+        $user = User::findOrFail($user_id);
+
+        $student = $user->student;
+
+        return view('students.show', compact('user','student'));
     }
 
     /**
@@ -45,7 +37,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $departments = Department::all();
+
+        return view('students.edit', compact('student', 'departments'));
     }
 
     /**
@@ -53,7 +47,18 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        if($request->phone_number)  {
+            $student->user()->update([
+                'phone_number' => $request->phone_number,
+            ]);
+        }
+
+        $student->update([
+            'birth_date' => $request->birth_date,
+            'gender' => $request->gender,
+        ]);
+
+        return redirect()->route('students.index')->with('success', 'Bio data updated successfully.');
     }
 
     /**

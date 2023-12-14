@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
-                    <div class="block overflow-x-auto shadow-md sm:rounded-lg">
+                    <div class="block overflow-x-auto sm:rounded-lg">
 
                         <table class="min-w-full leading-normal table-auto md:table-fixed">
                             <thead>
@@ -65,35 +65,34 @@
                                     </td>
 
                                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                        @can('user_show')
-                                        <a href="{{ route('users.show', $user) }}">
-                                            <svg class="w-5 h-5 inline" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
-                                            </svg>
-                                        </a>
-                                        @endcan
+                                        <div class="flex justify-items-center items-center">
+                                            @can('user_show')
+                                            <a  class="mr-2 py-2 px-4 text-center bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500" class="mr-2" href="{{ route('users.show', $user) }}">
+                                               View
+                                            </a>
+                                            @endcan
 
-                                        @can('user_edit')
-                                        <a class="" href="{{ route('users.edit', $user) }}">
-                                           Edit
-                                        </a>
-                                        @endcan
+                                            @can('user_edit')
+                                            <a class="mr-2 py-2 px-4 text-center bg-teal-600 rounded-md text-white text-sm hover:bg-teal-500" href="{{ route('users.edit', $user) }}">
+                                            Edit
+                                            </a>
+                                            @endcan
 
-                                        @can('user_delete')
-                                        <form method="post" action="{{ route('users.destroy', $user) }}" class="p-6 inline">
-                                            @csrf
-                                            @method('delete')
+                                            @can('user_delete')
+                                            <form method="post" action="{{ route('users.destroy', $user) }}" class="inline">
+                                                @csrf
+                                                @method('delete')
 
-                                            <div class="ml-2 inline">
-                                                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                                                <div class="inline">
+                                                    <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                                                <x-danger-button class="ml-3">
-                                                    {{ __('Delete') }}
-                                                </x-danger-button>
-                                            </div>
-                                        </form>
-                                        @endcan
+                                                    <x-danger-button>
+                                                        {{ __('Delete') }}
+                                                    </x-danger-button>
+                                                </div>
+                                            </form>
+                                            @endcan
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

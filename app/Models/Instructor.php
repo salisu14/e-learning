@@ -9,8 +9,17 @@ class Instructor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'bio'];
+    protected $fillable = ['user_id', 'staff_number','department_id'];
 
+    public function allocations()
+    {
+        return $this->hasMany(Allocation::class);
+    }
+
+    public function learningMaterials()
+    {
+        return $this->hasMany(LearningMaterial::class);
+    }
 
     /**
      * Get the user for the instructor.

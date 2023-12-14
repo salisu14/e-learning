@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEnrollmentRequest;
 use App\Http\Requests\UpdateEnrollmentRequest;
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Session;
 use App\Models\User;
 
 class EnrollmentController extends Controller
@@ -15,7 +16,21 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        $enrollments = Enrollment::latest()->paginate(10);
+        // $enrollments = Enrollment::latest()->paginate(10);
+
+        // $enrollments = Enrollment::has('user')
+        //             ->orderByDesc('created_at')
+        //             ->distinct()
+        //             ->get();
+
+        $enrollments = Enrollment::select('users.id','users.name', 'enrollments.created_at')
+            ->selectRaw('count(enrollments.id) as num_enrollments')
+            ->join('users', 'enrollments.user_id', '=', 'users.id')
+            ->groupBy('users.id', 'users.name', 'enrollments.created_at')
+            ->get();
+
+
+        // dd($enrollments);
 
         return view('enrollments.index', compact('enrollments'));
     }
@@ -27,9 +42,15 @@ class EnrollmentController extends Controller
     {
         $courses = Course::latest()->get();
         
-        $users = user::latest()->get();
+        $users = User::role('student')->paginate(10);
 
-        return view('enrollments.create', compact('courses', 'users'));
+        $sessions = Session::get();
+
+        // $users = $users->filter(function($user){
+        //     return $user->hasRole('Student');
+        // });
+
+        return view('enrollments.create', compact('courses', 'users', 'sessions'));
     }
 
     /**
@@ -40,6 +61,8 @@ class EnrollmentController extends Controller
         $validated = $request->validated();
 
         $validated['enrollment_date'] = now();
+
+        dd($validated);
 
         $enrollment = Enrollment::create($validated);
 
@@ -55,7 +78,9 @@ class EnrollmentController extends Controller
         
         $users = user::latest()->get();
 
-        return view('enrollments.edit', compact('enrollment','courses', 'users'));
+        $sessions = Session::get();
+
+        return view('enrollments.edit', compact('enrollment','courses', 'users', 'sessions'));
     }
 
     /**

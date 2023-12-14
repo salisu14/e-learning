@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    @if(\Auth::user()->hasRole('Administrator'))
+                    @if(\Auth::user()->hasRole('administrator'))
                     <x-nav-link :href="route('sessions.index')" :active="request()->routeIs('sessions.index')">
                         {{ __('Sessions') }}
                     </x-nav-link>
@@ -27,6 +27,10 @@
 
                     <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
                         {{ __('Instructors') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                        {{ __('Students') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
@@ -46,11 +50,19 @@
                     </x-nav-link>
                     @endif
 
-                    @if(!\Auth::user()->hasRole('Administrator'))
-                    <x-nav-link href="#">
+                    @if(\Auth::user()->hasRole('student'))
+                    <x-nav-link href="{{ route('students.enrollment.courses') }}">
                         {{ __('My Courses') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('students.show', ['user_id' => \Auth::user()]) }}">
+                        {{ __('Bio Data') }}
+                    </x-nav-link>
+                    @endif
 
+                    @if (\Auth::user()->hasRole('instructor'))
+                    <x-nav-link href="{{ route('instructors.allocations') }}">
+                        {{ __('Allocations') }}
+                    </x-nav-link>
                     <x-nav-link href="#">
                         {{ __('My Students') }}
                     </x-nav-link>
@@ -79,7 +91,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        @if (\Auth::user()->hasRole('Administrator'))
+                        @if (\Auth::user()->hasRole('administrator'))
                         <x-dropdown-link :href="route('users.index')">
                             {{ __('Manage Users') }}
                         </x-dropdown-link>
