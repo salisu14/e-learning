@@ -17,19 +17,10 @@ class AllocationController extends Controller
      */
     public function index()
     {
-        // $allocations = Allocation::latest()->paginate(10);
-        $allocations = Allocation::with(['instructor.user', 'course', 'session'])->paginate(10);
-
-        // $allocations = Allocation::with(['instructor.user', 'course', 'session'])
-        // ->orderBy('session_id')
-        // ->orderBy('course_id')
-        // ->get()
-        // ->groupBy([
-        //     'session.name',
-        //     'course.title',
-        // ]);
-
-        // dd($allocations);
+        // Fetch allocations with related models
+        $allocations = Allocation::with(['course', 'session', 'instructor.user'])
+            ->orderBy('session_id')
+            ->paginate(10);
 
         return view('allocations.index', compact('allocations'));
     }
