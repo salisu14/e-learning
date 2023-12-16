@@ -23,11 +23,25 @@ class EnrollmentController extends Controller
         //             ->distinct()
         //             ->get();
 
-        $enrollments = Enrollment::select('users.id','users.name', 'enrollments.created_at')
-            ->selectRaw('count(enrollments.id) as num_enrollments')
-            ->join('users', 'enrollments.user_id', '=', 'users.id')
-            ->groupBy('users.id', 'users.name', 'enrollments.created_at')
-            ->get();
+        // $enrollments = Enrollment::select('users.id','users.name', 'enrollments.created_at')
+        //     ->selectRaw('count(enrollments.id) as num_enrollments')
+        //     ->join('users', 'enrollments.user_id', '=', 'users.id')
+        //     ->groupBy('users.id', 'users.name', 'enrollments.created_at')
+        //     ->get();
+
+        // $enrollments = Enrollment::join('users', 'enrollments.user_id', '=', 'users.id')
+        //     ->select('users.id', 'users.name', 'enrollments.created_at')
+        //     ->selectRaw('COUNT(enrollments.id) AS num_enrollments')
+        //     ->groupBy('users.id', 'users.name', 'enrollments.created_at')
+        //     ->get();
+
+    //     $enrollments = Enrollment::join('users', 'enrollments.user_id', '=', 'users.id')
+    // ->select('users.id', 'users.name', 'enrollments.created_at', 'enrollments.session_id')
+    // ->selectRaw('COUNT(enrollments.id) AS num_enrollments')
+    // ->groupBy('users.id', 'users.name', 'enrollments.created_at', 'enrollments.session_id')
+    // ->get();
+
+        $enrollments = Enrollment::with('user')->get();
 
 
         // dd($enrollments);

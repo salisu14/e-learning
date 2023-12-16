@@ -23,7 +23,9 @@
                                         <tr>
                                             <th class="border-b py-2 px-4 bg-gray-100">S/N</th>
                                             <th class="border-b py-2 px-4 bg-gray-100">Instructor</th>
-                                            <th class="border-b py-2 px-4 bg-gray-100">Course</th>
+                                            <th class="border-b py-2 px-4 bg-gray-100">Course Code</th>
+                                            <th class="border-b py-2 px-4 bg-gray-100">Course Title</th>
+                                            <th class="border-b py-2 px-4 bg-gray-100">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -31,7 +33,11 @@
                                             <tr>
                                                 <td class="border-b py-2 px-4">{{ $loop->iteration }}.</td>
                                                 <td class="border-b py-2 px-4">{{ $allocation->instructor->user->name }}</td>
+                                                <td class="border-b py-2 px-4">{{ $allocation->course->code }}</td>
                                                 <td class="border-b py-2 px-4">{{ $allocation->course->title }}</td>
+                                                <td class="border-b py-2 px-4">
+                                                    <a href="{{ route('allocations.edit', $allocation) }}" class="px-4 py-2 bg-green-600 text-white rounded-lg dark:text-white hover:bg-green-900">Edit</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -39,7 +45,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center">No enrollments found.</p>
+                        <p class="text-center text-red-500">No enrollments found.</p>
                     @endforelse
 
                     <div class="flex justify-right items-center mt-6">

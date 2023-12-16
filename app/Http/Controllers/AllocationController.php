@@ -82,11 +82,11 @@ class AllocationController extends Controller
     {
         $courses = Course::latest()->get();
 
-        $instructors = Instructor::latest()->get();
+        $instructors = User::role('instructor')->get();
 
-        $sessions = Session::latest()->get();
+        $session = Session::where('is_active', true)->first();
 
-        return view('allocations.edit', compact('allocation','courses', 'instructors', 'sessions'));
+        return view('allocations.edit', compact('allocation','courses', 'instructors', 'session'));
     }
 
     /**
