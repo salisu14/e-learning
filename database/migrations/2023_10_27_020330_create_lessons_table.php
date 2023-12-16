@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('allocation_id')->constrained('allocated_courses');
+            $table->foreignId('allocation_id')->constrained();
             $table->timestamps();
         });
     }
