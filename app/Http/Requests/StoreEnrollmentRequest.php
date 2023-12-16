@@ -22,7 +22,8 @@ class StoreEnrollmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'course_id' => 'required|exists:App\Models\Course,id',
+            'courses' => 'required|array',
+            'session_id' => 'required|exists:App\Models\Session,id',
             'user_id'   => 'required|exists:App\Models\User,id',
         ];
     }

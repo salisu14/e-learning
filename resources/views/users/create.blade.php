@@ -67,19 +67,19 @@
                                         required/>
                             </div>
 
+                            <!-- Roles -->
                             <div class="mt-4">
                                 <label for="roles" class="block font-medium text-sm text-gray-700">Roles</label>
                                 <select name="roles[]" size="5" id="roles" class="form-multiselect rounded-md shadow-sm mt-1 block w-full" multiple="multiple">
-                                    @foreach($roles as $roleName => $roleId)
-                                        <option value="{{ $roleName }}" {{ in_array($roleName, old('roles', [])) ? ' selected' : '' }}>{{ $roleId }}</option>
+                                    @foreach($roles as $roleId => $roleName)
+                                        <option value="{{ $roleId }}" {{ in_array($roleId, old('roles', [])) ? ' selected' : '' }}>{{ $roleName }}</option>
                                     @endforeach
                                 </select>
                                 @error('roles')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
-
-
+                            
                             <div class="flex mt-4">
                                 <x-button class="w-full">
                                     {{ __('Create') }}

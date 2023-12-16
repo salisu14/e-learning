@@ -53,9 +53,22 @@ class CourseController extends Controller
 
         $dept_id = Department::first()->id;
 
-        $validated['department_id'] = $dept_id;   
+        $validated['department_id'] = $dept_id;
 
         auth()->user()->courses()->create($validated);
+
+        /*
+        $module = Module::create([
+            'title' => $request->input('module_title'),
+        ]);
+    
+        foreach ($request->file('learning_materials') as $file) {
+            $module->learningMaterials()->create([
+                'file_path' => $file->store('learning_materials'),
+                'type' => 'file', // Adjust based on your requirements
+            ]);
+        }
+        */
 
         return redirect()->route('courses.index')->withSuccess('Course created successfully.');
     }

@@ -12,25 +12,40 @@ class Course extends Model
 
     protected $fillable = ['title', 'code', 'semester', 'department_id', 'status', 'type', 'level', 'unit'];
 
+    public function allocations()
+    {
+        return $this->hasMany(Allocation::class);
+    }
+
     /**
-     * Get the instructor for the course.
+     * Get the enrollments for the course.
      */
-    public function enrollments(): HasMany
+    public function enrollments()
     {
         return $this->hasMany(Enrollment::class);
     }
 
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'enrollments');
+    }
+
     /**
-     * Get the instructor for the course.
+     * Get the department for the course.
      */
     public function department()
     {
         return $this->belongsTo(Department::class);
     }
 
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
 
     /**
-     * Get the user for the course.
+     * Get the instructor for the course.
      */
     public function user()
     {

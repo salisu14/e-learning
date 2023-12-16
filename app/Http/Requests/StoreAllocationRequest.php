@@ -23,7 +23,7 @@ class StoreAllocationRequest extends FormRequest
     {
         return [
             'instructor_id' => 'required',
-            'course_id' => 'required',
+            'courses' => 'required|array',
             'session_id' => 'required',
         ];
     }

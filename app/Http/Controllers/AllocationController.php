@@ -8,6 +8,7 @@ use App\Models\Allocation;
 use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\Session;
+use App\Models\User;
 
 class AllocationController extends Controller
 {
@@ -16,7 +17,10 @@ class AllocationController extends Controller
      */
     public function index()
     {
-        $allocations = Allocation::latest()->paginate(10);
+        // Fetch allocations with related models
+        $allocations = Allocation::with(['course', 'session', 'instructor.user'])
+            ->orderBy('session_id')
+            ->paginate(10);
 
         return view('allocations.index', compact('allocations'));
     }
@@ -28,7 +32,8 @@ class AllocationController extends Controller
     {
         $courses = Course::latest()->get();
 
-        $instructors = Instructor::latest()->get();
+        // $instructors = User::whereHas('instructor')->get();
+        $instructors = User::role('instructor')->get();
         
         $session = Session::where('is_active', true)->first();
 
@@ -46,7 +51,18 @@ class AllocationController extends Controller
     {
         $validated = $request->validated();
 
-        Allocation::create($validated);
+        $user = User::findOrFail($request->instructor_id);
+
+        $instructor = $user->instructor;
+
+        $courseIds = $request->input('courses', []);
+
+        foreach ($courseIds as $courseId) {
+            $instructor->allocations()->create([
+                'course_id' => $courseId,
+                'session_id' => $validated['session_id'],
+            ]);
+        }
 
         return redirect()->route('allocations.index')->withSuccess('Allocation created successfully.');
     }
@@ -66,11 +82,11 @@ class AllocationController extends Controller
     {
         $courses = Course::latest()->get();
 
-        $instructors = Instructor::latest()->get();
+        $instructors = User::role('instructor')->get();
 
-        $sessions = Session::latest()->get();
+        $session = Session::where('is_active', true)->first();
 
-        return view('allocations.edit', compact('allocation','courses', 'instructors', 'sessions'));
+        return view('allocations.edit', compact('allocation','courses', 'instructors', 'session'));
     }
 
     /**

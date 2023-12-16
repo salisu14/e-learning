@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content')->nullable();
-            $table->text('order')->nullable();
-            $table->foreignId('course_id')->constrained();
+            $table->foreignId('allocation_id')->constrained('allocated_courses');
             $table->timestamps();
         });
     }

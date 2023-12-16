@@ -25,14 +25,18 @@
                                 </select>
                             </div>
 
-                            <!-- Course -->
+                            <!-- Courses -->
                             <div class="mt-3">
-                                <x-label for="course" :value="__('Choose Course')"/>
-                                <select name="course_id" id="course" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
-                                @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->title  }}</option>
-                                @endforeach
-                                </select>
+                                <x-label for="courses" :value="__('Choose Courses')"/>
+
+                                <div class="grid grid-cols-3 gap-4">
+                                    @foreach($courses as $course)
+                                        <div>
+                                            <input type="checkbox" name="courses[]" value="{{ $course->id }}" id="course_{{ $course->id }}">
+                                            <label for="course_{{ $course->id }}">{{ $course->title }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
 
                             <div class="flex items-center justify-end mt-4">

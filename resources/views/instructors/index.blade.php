@@ -21,7 +21,7 @@
                                         Instructor name
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Bio
+                                        Phone Number
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Created On
@@ -36,13 +36,13 @@
                                 @foreach($instructors as $instructor)
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ ($instructors->currentPage() - 1) * $instructors->perPage() + $loop->iteration }}.
+                                    {{ $instructor->id }}.
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $instructor->name }}
+                                        <a href="{{ route('instructors.show', $instructor->id) }}">{{ $instructor->name }}</a>
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $instructor->bio }}
+                                        {{ $instructor->phone_number }}
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $instructor->created_at->toDayDateTimeString() }}
@@ -61,15 +61,12 @@
                             </tbody>
                         </table>
 
-                        <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
-                            {{ $instructors->links() }}
-                        </div>
-
+                       
 
                     </div>
 
                     <div class="flex justify-right items-center mt-6">
-                        <a href="{{ route('instructors.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Instructor</a>
+                        <a href="{{ route('users.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Instructor</a>
                     </div>
                 </div>
             </div>

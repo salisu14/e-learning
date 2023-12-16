@@ -22,6 +22,7 @@ class UpdateEnrollmentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'courses' => 'required|array',
             'course_id' => 'required|exists:App\Models\Course,id',
             'user_id'   => 'required|exists:App\Models\User,id',
         ];

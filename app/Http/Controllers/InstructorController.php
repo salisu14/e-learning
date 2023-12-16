@@ -15,8 +15,8 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $instructors = Instructor::latest()->paginate(10);
-
+        $instructors = User::role('instructor')->paginate(15);
+        
         return view('instructors.index', compact('instructors'));
     }
 
@@ -44,6 +44,22 @@ class InstructorController extends Controller
         auth()->user()->instructors()->create($validated);
 
         return redirect()->route('instructors.index')->withSuccess("Instructor created successfully.");
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($user_id)
+    {
+        $user = User::findOrFail($user_id);
+
+        $instructor = $user->instructor;
+
+        // $allocations = $instructor->allocations;
+
+        // dd($instructor, $allocations);
+
+        return view('instructors.show', compact('instructor'));
     }
 
     /**
