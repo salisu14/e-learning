@@ -19,15 +19,11 @@ class InstructorAllocationController extends Controller
 
         $instructor = $user->instructor;
 
-        // dd($instructor, $instructor->allocations);
-
         return view('instructors.instructor-allocations', compact('instructor'));
     }
 
     public function allocatedDetails(Allocation $allocation)
     {
-        // dd($allocation->course->enrollments);
-
         return view('instructors.allocation-details', compact('allocation'));
     }
 }

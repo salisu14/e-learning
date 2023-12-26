@@ -9,8 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
-                        <form enctype="multipart/form-data" method="POST" action="{{ route('learning-materials.store') }}" class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+                    <div class="relative overflow-x-auto  sm:rounded-lg p-6">
+
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('learning-materials.store', ['lesson' => $lessonId]) }}" class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
                             @csrf
 
                             <div class="mb-4">
@@ -32,22 +33,13 @@
                             </div>
 
                             <div class="mb-4">
-                                <label for="documents[]" class="block text-gray-700 font-bold mb-2">Upload Documents:</label>
-                                <input type="file" name="documents[]" id="documents" accept=".doc, .docx, .ppt, .pptx, .pdf" class="border px-3 py-2" multiple>
+                                <label for="document" class="block text-gray-700 font-bold mb-2">Upload Document:</label>
+                                <input type="file" name="document" id="document" accept=".doc, .docx, .ppt, .pptx, .pdf" class="border px-3 py-2">
                             </div>
 
                             <div class="mb-4">
-                                <label for="videos[]" class="block text-gray-700 font-bold mb-2">Upload Videos:</label>
-                                <input type="file" name="videos[]" id="videos" accept=".mp4, .mov, .avi, .wmv" class="border px-3 py-2" multiple>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="lesson_id" class="block text-gray-700 font-bold mb-2">Select Lesson:</label>
-                                <select name="lesson_id" id="lesson_id" class="w-full border rounded px-3 py-2">
-                                    @foreach($lessons as $lesson)
-                                        <option value="{{ $lesson->id }}">{{ $lesson->title }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="video" class="block text-gray-700 font-bold mb-2">Upload Video:</label>
+                                <input type="file" name="video" id="videos" accept=".mp4, .mov, .avi, .wmv" class="border px-3 py-2">
                             </div>
 
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>

@@ -28,6 +28,10 @@
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
+                                        Add Course Material
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
                                         Date created
                                     </th>
 
@@ -43,11 +47,17 @@
                                     {{ ($lessons->currentPage() - 1) * $lessons->perPage() + $loop->iteration }}.
                                     </td>
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $lesson->title }}
+                                        <a class="inline" href="{{ route('lessons.show', $lesson) }}">{{ $lesson->title }}</a>
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $lesson->course->title }}
+                                        {{ optional($lesson->allocation)->course->title }}
+                                    </td>
+
+                                    <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a class="inline" href="{{ route('learning-materials.create', $lesson) }}">
+                                            Add
+                                        </a>
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -60,9 +70,9 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </a>
-                                            <a class="inline" href="{{ route('lessons.edit', $lesson) }}">
+                                        <a class="inline" href="{{ route('lessons.edit', $lesson) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                             </svg>
                                         </a>
                                         <form class="inline" method="POST" action="{{ route('lessons.destroy', $lesson) }}">
@@ -85,11 +95,6 @@
                             {{ $lessons->links() }}
                         </div>
 
-
-                    </div>
-
-                    <div class="flex justify-right items-center mt-6">
-                        <a href="{{ route('lessons.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add lesson</a>
                     </div>
                 </div>
             </div>

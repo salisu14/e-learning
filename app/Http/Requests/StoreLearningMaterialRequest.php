@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLessonRequest extends FormRequest
+class StoreLearningMaterialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class UpdateLessonRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'documents' => 'nullable|array',
-            'documents.*' => 'file|mimes:doc,docx,ppt,pptx,pdf',
-            'videos' => 'nullable|array',
-            'videos.*' => 'file|mimes:mp4,mov,avi,wmv',
+            'document' => 'nullable|file|mimes:doc,docx,ppt,pptx,pdf',
+            'video' => 'nullable|file|mimes:mp4,mov,avi,wmv',
         ];
     }
 }

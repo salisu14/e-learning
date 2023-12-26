@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
+
+use App\Models\Allocation;
 use App\Models\Course;
 use App\Models\Lesson;
 
+use App\Services\LessonService;
+
 class LessonController extends Controller
 {
+    protected $lessonService;
+
+    public function __construct(LessonService $lessonService)
+    {
+        $this->lessonService = $lessonService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -23,26 +34,23 @@ class LessonController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($allocation)
     {
-        $courses = Course::latest()->get();
-
-        return view('lessons.create', \compact('courses'));
+        return view('lessons.create', \compact('allocation'));
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLessonRequest $request)
+    public function store(StoreLessonRequest $request, $allocationId)
     {
         $validated = $request->validated();
 
-        // dd($validated);
+        $validated['allocation_id'] = $allocationId;
 
-        $course = Lesson::create($validated);
+        Lesson::create($validated);
 
-        return redirect()->route('lessons.index')->withSuccess('lesson created successfully.');
+        return redirect()->route('lessons.index')->with('success', 'Lesson created successfully.');
     }
 
     /**
@@ -68,7 +76,6 @@ class LessonController extends Controller
      */
     public function update(UpdateLessonRequest $request, Lesson $lesson)
     {
-        
         $validated = $request->validated();
 
         $course->update($validated);

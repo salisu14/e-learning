@@ -24,6 +24,11 @@ class Allocation extends Model
         return $this->belongsTo(Instructor::class);
     }
 
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
     public function session()
     {
         return $this->belongsTo(Session::class);

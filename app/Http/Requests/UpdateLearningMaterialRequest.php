@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLessonRequest extends FormRequest
+class UpdateLearningMaterialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,12 +22,7 @@ class UpdateLessonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'documents' => 'nullable|array',
-            'documents.*' => 'file|mimes:doc,docx,ppt,pptx,pdf',
-            'videos' => 'nullable|array',
-            'videos.*' => 'file|mimes:mp4,mov,avi,wmv',
+            //
         ];
     }
 }

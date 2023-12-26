@@ -17,6 +17,12 @@ class Course extends Model
         return $this->hasMany(Allocation::class);
     }
 
+    public function lessons()
+    {
+        return $this->hasManyThrough(Lesson::class,Allocation::class);
+    }
+
+
     /**
      * Get the enrollments for the course.
      */
@@ -38,10 +44,7 @@ class Course extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function lessons()
-    {
-        return $this->hasMany(Lesson::class);
-    }
+    
 
 
     /**

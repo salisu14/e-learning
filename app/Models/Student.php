@@ -28,6 +28,12 @@ class Student extends Model
         return $this->hasMany(Enrollment::class);
     }
 
+    // Check if the user is enrolled in a specific course
+    public function isEnrolledIn($courseId)
+    {
+        return $this->enrollments->contains($courseId);
+    }
+
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'enrollments');

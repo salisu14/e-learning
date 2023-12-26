@@ -10,31 +10,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-6">
-                        <form method="POST" action="{{ route('lessons.store') }}">
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('lessons.store', $allocation) }}">
                             @csrf
 
-                            <!-- Title -->
-                            <div>
+                            <!-- Lesson Title -->
+                            <div class="mb-2">
                                 <x-input-label for="title" :value="__('Title')" />
                                 <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                            </div>
-
-                            <!-- Content-->
-                            <div class="mt-4">
-                                <x-input-label for="content" :value="__('Content')" />
-                                <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="content" type="text" name="content" :value="old('content')"></textarea>
-                                <x-input-error :messages="$errors->get('content')" class="mt-2" />
-                            </div>
-
-                            <!-- Order -->
-                            <div class="mt-3">
-                                <x-label for="course" :value="__('Choose Course')"/>
-                                <select name="course_id" id="course" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
-                                @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->title  }}</option>
-                                @endforeach
-                                </select>
                             </div>
 
                             <div class="flex items-center justify-end mt-4">

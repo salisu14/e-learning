@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Courses') }}
+            {{ __('Learning Materials') }}
         </h2>
     </x-slot>
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-               <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
+                <div class="px-6 py-2 text-gray-900 dark:text-gray-100">
                             
                     <div class="block overflow-x-auto sm:rounded-lg">
 
@@ -21,23 +21,15 @@
                                         S/N
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Course code
+                                        Title
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
-                                        Course title
+                                        Description
                                     </th>
                         
                                     <th scope="col" class="px-6 py-3">
-                                        Credit Unit
-                                    </th>
-
-                                    <th scope="col" class="px-6 py-3">
-                                        Semester
-                                    </th>
-
-                                    <th scope="col" class="px-6 py-3">
-                                        Status
+                                        Document Type
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
@@ -46,45 +38,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($courses as $course)
+                                @foreach($learningMaterials as $material)
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ ($courses->currentPage() - 1) * $courses->perPage() + $loop->iteration }}.
+                                    {{ ($learningMaterials->currentPage() - 1) * $learningMaterials->perPage() + $loop->iteration }}.
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        <a class="hover:underline" href="{{ route('courses.show', $course) }}">{{ $course->code }}</a>
+                                        <a class="hover:underline" href="#">{{ $material->title }}</a>
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        <a class="hover:underline" href="{{ route('courses.show', $course) }}">{{ $course->title }}</a>
+                                        <a class="hover:underline" href="#">{{ $material->description }}</a>
                                     </td>
 
                                     <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                       {{ $course->unit }}
+                                        {{ Str::ucfirst($material->type) }}
                                     </td>
 
-                                    <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                       {{ Str::ucfirst($course->semester) }}
-                                    </td>
-
-                                    <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{  Str::ucfirst($course->type) }}
-                                    </td>
-                                    
                                     <td class="px-6 py-4">
-                                        <a class="inline" href="{{ route('courses.show', $course) }}">
+                                        <a class="inline" href="#">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </a>
-                                            <a class="inline" href="{{ route('courses.edit', $course) }}">
+                                            <a class="inline" href="#">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                             </svg>
                                         </a>
-                                        <form class="inline" method="POST" action="{{ route('courses.destroy', $course) }}">
+                                        <form class="inline" method="POST" action="#">
                                             @csrf
                                             @method('DELETE')
 
@@ -101,13 +85,8 @@
                         </table>
 
                         <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
-                            {{ $courses->links() }}
+                            {{ $learningMaterials->links() }}
                         </div>
-
-                    </div>
-
-                    <div class="flex justify-right items-center mt-6">
-                        <a href="{{ route('courses.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add course</a>
                     </div>
                 </div>
             </div>
