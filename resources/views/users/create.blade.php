@@ -70,7 +70,7 @@
                             <!-- Roles -->
                             <div class="mt-4">
                                 <label for="roles" class="block font-medium text-sm text-gray-700">Roles</label>
-                                <select name="roles[]" size="5" id="roles" class="form-multiselect rounded-md shadow-sm mt-1 block w-full" multiple="multiple">
+                                <select name="roles[]" id="roles" class="form-multiselect rounded-md shadow-sm mt-1 block w-full">
                                     @foreach($roles as $roleId => $roleName)
                                         <option value="{{ $roleId }}" {{ in_array($roleId, old('roles', [])) ? ' selected' : '' }}>{{ $roleName }}</option>
                                     @endforeach
