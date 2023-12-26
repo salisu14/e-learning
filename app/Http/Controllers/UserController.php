@@ -20,8 +20,8 @@ class UserController extends Controller
         $this->authorize('viewany', User::class);
         
         $users = User::with(['roles',])
-                    ->orderBy('id')
-                    ->orderByDesc('created_at')
+                    ->orderByDesc('id')
+                    ->orderBy('created_at')
                     ->paginate(5);
 
         return view('users.index', compact('users'));
