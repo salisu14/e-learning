@@ -1,0 +1,17 @@
+# railway.toml
+
+[build]
+  # Build commands before deploying
+  commands = [
+    "composer install --no-interaction --prefer-dist",
+    "npm install",
+    "npm run dev",
+  ]
+
+[deploy]
+  # Deployment commands
+  commands = [
+    "php artisan migrate --seed",
+    "php artisan config:cache",
+    "php artisan route:cache",
+  ]
